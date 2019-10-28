@@ -7,7 +7,7 @@ package hm;
 		inData=primer;
 		
 				}
-	  String[] massiv() {
+	  String[] massiv() {   //Parsing of string: String to Array
 		  String[] a = new String[inData.length()];
 		  int i = 0,j=0,k=0;
 		  String buf="";
@@ -38,7 +38,7 @@ package hm;
 	  }
 	
 	public static void main(String[] args) {
-		Calcutta prn = new Calcutta("1+2+1*(10-2)/2+16*1-1");
+		Calcutta prn = new Calcutta("1+2+1*(10-2+0)/2+16*1-1");
 		System.out.println(prn.inData);
 		System.out.println("Load Array ");
 		String[] bufA = new String[prn.inData.length()];	
@@ -46,7 +46,10 @@ package hm;
 		for (int i=0;i<bufA.length;i++) {
 			if (bufA[i]!=null)
 		System.out.print(bufA[i]+" ");
+			// Parsing complete
 		}
+		Priority prior = new Priority(bufA);
+		prior.priority(bufA);
 
 }
 

@@ -5,7 +5,9 @@ enum e{
 	PLUS("+"),
 	MINUS("-"),
 	MULTIPLY("*"),
-	DIVIDE("/");
+	DIVIDE("/"),
+	LBKT("("),
+	RBKT(")");
 	private String znak;
 	e(String znak){
 		this.znak=znak;
