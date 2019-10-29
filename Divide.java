@@ -7,7 +7,12 @@ public class Divide {
 	Divide(float a,float b){
 		x=a;
 		y=b;
-		result=x+y;
+		if (y==0) {
+			System.out.print("Error! Zero divide");
+		} else {
+			result=x/y;
+		}
+		
 	}
 	float divide(float x,float y){
 		return result;

@@ -38,7 +38,7 @@ package hm;
 	  }
 	
 	public static void main(String[] args) {
-		Calcutta prn = new Calcutta("1+2+1*(10-2+0)/2+16*1-1");
+		Calcutta prn = new Calcutta("1+2+1*10-2/2+16*1-1");
 		System.out.println(prn.inData);
 		System.out.println("Load Array ");
 		String[] bufA = new String[prn.inData.length()];	
