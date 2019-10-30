@@ -4,14 +4,16 @@ import hm.Enum.e;
 
 public class Priority {
 	String [] sumA;
-	
 	Priority(String bufA[]){
 		sumA=bufA;
 		}
-public float priority(String sumA[]) {
-	System.out.println("method Priority ");
-	float result=0;
+public String priority(String sumA[]) {
+	String result="";
 	int size=0;
+	if (sumA.length==1) {
+		result=sumA[0];
+		return result;
+	}
 	for (int i=0;i<sumA.length;i++) {
 	if (sumA[i]!=null) size++;	
 	}
@@ -19,42 +21,45 @@ public float priority(String sumA[]) {
 
 	for (int i=0;i<sumB.length;i++)
 		sumB[i]=sumA[i];
-	sumA=protos(revolve(sumB));
-	for (int i=0;i<sumA.length;i++)
-		System.out.print("~"+sumA[i]+"~");
-	result=Float.valueOf(sumA[0]);
+	String [] sumC = new String [1];
+	sumC=protos(revolve(sumB));
+	System.out.print(sumC[0]);
+	result=sumC[0];
 	
 	return result;
 
 }
 public String[] revolve(String revA[]) {
 	int size=0;
-	
-
-	//String[] revB = new String[size];
-	//String[] revC = new String[size];
 	String [] revB  = new String[revA.length];
 	revB=revA;
+	if (revA.length==1)	return revA;
+
 	for (int i=0;i<revB.length;i++) {
-		System.out.println(" |"+revA[i]+" & vvod revolve");
+
 //	if (revA[i].equals(e.LBKT.getZnak())==true) {
 //	while (revA[i+1].equals(e.RBKT.getZnak())==true) if (i<revA.length-1) revB[i]=revA[i]; 
 //	for (int d=0;d<revB.length;d++) System.out.print(revB[d]+" % ");
 //	revolve(revB);
 //}
-	if (revB[i].equals(e.MULTIPLY.getZnak())) {
+		if (revB[i]==null) revB=cleanBuf(revB);
+		if (revB.length>2)
+			if (i>0)
+		if (revB[i].equals(e.MULTIPLY.getZnak())) {
 		float x=0; float y=0;
 		x=Float.valueOf(revB[i-1]); y=Float.valueOf(revB[i+1]);
 		Multiply mu = new Multiply(x,y);
 		revB[i]=String.valueOf(mu.multiply(x,y));
 		revB[i-1]=null;
 		revB[i+1]=null;
-		System.out.println(revB[i]+" & ");
+		if (revB.length>1)
 		revB=cleanBuf(revB);
 		revolve(revB);
 		
 	}
-	
+		if (revB[i]==null) revB=cleanBuf(revB);
+		if (revB.length>2)
+			if (i>0)
 	if (revB[i].equals(e.DIVIDE.getZnak())) {
 		float x=0; float y=0;
 		x=Float.valueOf(revB[i-1]); y=Float.valueOf(revB[i+1]);
@@ -62,7 +67,7 @@ public String[] revolve(String revA[]) {
 		revB[i]=String.valueOf(di.divide(x,y));
 		revB[i-1]=null;
 		revB[i+1]=null;
-		System.out.println(revB[i]+" & ");
+		if (revB.length>1)
 		revB=cleanBuf(revB);
 		revolve(revB);
 	}
@@ -74,21 +79,28 @@ public String[] revolve(String revA[]) {
 	return revB;
 }
 public String[] cleanBuf(String revA[]) {
-System.out.println("call Cleaner");
 	int size=0;
+	if (revA.length==1)
+		return revA;
+
+	if (revA.length==3) if (revA[0]==null) if (revA[2]==null) {
+		String[] revB = new String[1];
+		revB[0]=revA[1];
+		return revB;
+	}
 	for (int j=0;j<revA.length;j++) {
 		if (revA[j]!=null) 
-			size++;		
+			size++;	
 		}
-	
+		
 	String[] revB = new String[size];
 	int l=0;
 	
 	for (int m=0;m<revA.length;m++) {
-		if(revA[m]!=null) {
-			System.out.print("^l="+l+revA[m]+"^m="+m+"  ");
+		if(revA[m]!=null) {	
 		revB[l]=revA[m];
-		l++;	
+
+			l++;
 		} 
 	}
 		
@@ -99,47 +111,73 @@ System.out.println("call Cleaner");
 public String[] protos(String revA[]) {
 	String [] revB  = new String[revA.length];
 	revB=revA;
-	for (int i=0;i<revB.length;i++) {
-	if (revB[i].equals(e.MINUS.getZnak())) {
-		System.out.println(" PROTOS- "+revB[i-1]+"<"+revB[i]+">"+revB[i+1]);
-		float x=0; float y=0;
-		x=Float.valueOf(revB[i-1]); y=Float.valueOf(revB[i+1]);
-		Minus mi = new Minus(x,y);
-		revB[i]=String.valueOf(mi.minus(x,y));
-		if (Float.valueOf(revB[i])<-5.0) { 
-			
-			System.out.println(" PROTOSssss- "+revB[i-1]+"<"+revB[i]+">"+revB[i+1]);
-			break; }
-		revB[i-1]=null;
-		revB[i+1]=null;
-		System.out.println(" PROTOS posle- "+revB[i-1]+"<"+revB[i]+">"+revB[i+1]);
-		for (int f=0;f<revB.length;f++)
-		System.out.println(revB[f]+" minu ");
-		revB=cleanBuf(revB);
-		
-		protos(revB);
-		
+
+	if (revA.length==1) return revA;
+
+		else {
+			if (revA.length == 3) {
+				String[] revC = new String[1];
+				if (revB[1].equals(e.MINUS.getZnak())) {
+					float x = 0;
+					float y = 10;
+					x = Float.valueOf(revB[0]);
+					y = Float.valueOf(revB[2]);
+					Minus mi = new Minus(x, y);
+					revC[0] = String.valueOf(mi.minus(x, y));
+				}
+				if (revB[1].equals(e.PLUS.getZnak())) {
+					float x = 0;
+					float y = 10;
+					x = Float.valueOf(revB[0]);
+					y = Float.valueOf(revB[2]);
+					Plus pl = new Plus(x, y);
+					revC[0] = String.valueOf(pl.plus(x, y));
+				}
+				System.out.print("TOTAL = " + revC[0] + "\n");
+				return revC;
+		}
+		if (revB[0]!=null) { 
+				for (int i = 0; i < revB.length; i++) {
+					if (revB[i] == null)
+						revB = cleanBuf(revB);
+					if (revB.length > 2)
+						if (revB[i].equals(e.MINUS.getZnak())) {
+							float x = 0;
+							float y = 10;
+							x = Float.valueOf(revB[i - 1]);
+							y = Float.valueOf(revB[i + 1]);
+							Minus mi = new Minus(x, y);
+							revB[i] = String.valueOf(mi.minus(x, y));
+							revB[i - 1] = null;
+							revB[i + 1] = null;
+							if (revB.length > 1)
+								revB = cleanBuf(revB);
+							if (revB.length == 1)
+								return revB;
+							if (revB.length > 2)
+								protos(revB);
+
 	}
-	
+	if (revB[i]==null) revB=cleanBuf(revB);
+	if (revB.length>2)
+		if (i>0)
 	if (revB[i].equals(e.PLUS.getZnak())) {
-		System.out.println(" PROTOS+ ");
 		float x=0; float y=0;
 		x=Float.valueOf(revB[i-1]); y=Float.valueOf(revB[i+1]);
 		Plus pl = new Plus(x,y);
-		
 		revB[i]=String.valueOf(pl.plus(x,y));
 		revB[i-1]=null;
 		revB[i+1]=null;
-		System.out.println(" PROTOS posle+ "+revB[i-1]+"<"+revB[i]+">"+revB[i+1]);
-		System.out.println(revB[i]+" plu ");
+		if (revB.length>1)
 		revB=cleanBuf(revB);
-		
-		protos(revB);
+		if (revB.length==1) return revB;
+		if (revB.length>2)
+		protos(revB); 
 	}
 	}
-		
 	
-	return revB;
-	
+}  
+	return revB; 
+}
 }
 }

@@ -39,8 +39,6 @@ package hm;
 	
 	public static void main(String[] args) {
 		Calcutta prn = new Calcutta("1+2+1*10-2/2+16*1-1");
-		System.out.println(prn.inData);
-		System.out.println("Load Array ");
 		String[] bufA = new String[prn.inData.length()];	
 		bufA=prn.massiv();
 		for (int i=0;i<bufA.length;i++) {
@@ -49,7 +47,7 @@ package hm;
 			// Parsing complete
 		}
 		Priority prior = new Priority(bufA);
-		prior.priority(bufA);
+		System.out.println("TOTAL: "+prior.priority(bufA));
 
 }
 
