@@ -158,9 +158,11 @@ public String[] protos(String revA[]) {
 								protos(revB);
 
 	}
+					if (i==revB.length) System.exit(0);
 	if (revB[i]==null) revB=cleanBuf(revB);
 	if (revB.length>2)
 		if (i>0)
+			if (i<revB.length)
 	if (revB[i].equals(e.PLUS.getZnak())) {
 		float x=0; float y=0;
 		x=Float.valueOf(revB[i-1]); y=Float.valueOf(revB[i+1]);
@@ -173,7 +175,7 @@ public String[] protos(String revA[]) {
 		if (revB.length==1) return revB;
 		if (revB.length>2)
 		protos(revB); 
-	}
+	} 
 	}
 	
 }  
