@@ -1,8 +1,8 @@
 package hm;
-
-  class  Calcutta {
+import gui.Gcalcutta;
+ public class  Calcutta {
 	String inData= new String();
-	
+	public static String prim = new String();
 	Calcutta (String primer) {	
 		inData=primer;
 		
@@ -38,7 +38,17 @@ package hm;
 	  }
 	
 	public static void main(String[] args) {
-		Calcutta prn = new Calcutta("1+2+1*10-2/2+16*1-1");
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				Gcalcutta.createGUI();
+			}
+		});
+	
+	//	System.out.println("TOTAL: "+prior.priority(bufA));
+
+}
+	public static void start(String param) {
+		Calcutta prn = new Calcutta(param);
 		String[] bufA = new String[prn.inData.length()];	
 		bufA=prn.massiv();
 		for (int i=0;i<bufA.length;i++) {
@@ -47,9 +57,8 @@ package hm;
 			// Parsing complete
 		}
 		Priority prior = new Priority(bufA);
-		System.out.println("TOTAL: "+prior.priority(bufA));
-
-}
+		prior.priority(bufA);
+	}
 
   } 
 

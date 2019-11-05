@@ -1,10 +1,12 @@
 package hm;
 
 import hm.Enum.e;
+import gui.*;
 
 public class Priority {
 	String [] sumA;
-	Priority(String bufA[]){
+	public static String tot=null;
+	public Priority(String bufA[]){
 		sumA=bufA;
 		}
 public String priority(String sumA[]) {
@@ -134,6 +136,7 @@ public String[] protos(String revA[]) {
 					revC[0] = String.valueOf(pl.plus(x, y));
 				}
 				System.out.print("TOTAL = " + revC[0] + "\n");
+				tot=revC[0];
 				return revC;
 		}
 		if (revB[0]!=null) { 
@@ -158,7 +161,11 @@ public String[] protos(String revA[]) {
 								protos(revB);
 
 	}
-					if (i==revB.length) System.exit(0);
+				//	if (i==revB.length) System.exit(0);
+					if (i==revB.length) { 
+						String[] revC = new String[1];
+						revC[0]=tot;
+						return revC;} 
 	if (revB[i]==null) revB=cleanBuf(revB);
 	if (revB.length>2)
 		if (i>0)
