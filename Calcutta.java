@@ -1,5 +1,6 @@
 package hm;
 import gui.Gcalcutta;
+import gui.Glogin;
  public class  Calcutta {
 	String inData= new String();
 	public static String prim = new String();
@@ -40,7 +41,9 @@ import gui.Gcalcutta;
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				Gcalcutta.createGUI();
+				Glogin.creatGUI();
+			
+				
 			}
 		});
 	

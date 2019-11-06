@@ -114,7 +114,10 @@ public String[] protos(String revA[]) {
 	String [] revB  = new String[revA.length];
 	revB=revA;
 
-	if (revA.length==1) return revA;
+	if (revA.length==1) {
+		tot=revA[0];
+		return revA;
+	}
 
 		else {
 			if (revA.length == 3) {
@@ -137,6 +140,7 @@ public String[] protos(String revA[]) {
 				}
 				System.out.print("TOTAL = " + revC[0] + "\n");
 				tot=revC[0];
+				revC[0]=tot;
 				return revC;
 		}
 		if (revB[0]!=null) { 
