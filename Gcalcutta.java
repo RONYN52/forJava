@@ -44,7 +44,7 @@ public class Gcalcutta {
 				public   void actionPerformed(ActionEvent e) {
 					
 					if (text.getText().equals("0"))  text.setText(null);
-					text.setText(text.getText()+(e.getActionCommand()));
+					
 					if (e.getActionCommand().equals("=")) {
 						
 						hm.Calcutta.prim=text.getText();
@@ -54,6 +54,8 @@ public class Gcalcutta {
 					
 						//text.setText(null);
 						text.setText(hm.Priority.tot);
+					} else {
+						text.setText(text.getText()+(e.getActionCommand()));
 					}
 				}	
 				}
